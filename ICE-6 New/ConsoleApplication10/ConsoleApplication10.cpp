@@ -44,14 +44,14 @@ int main()
 {
 	//Monster *boss = new Monster();
 	//Player *pOne = new Player();
-	MovableObject *boss = new Monster(); // With MoveableObject there is usually 1 less bit used compared to Monster/Player
-	MovableObject *pOne = new Player();  // Both increment the 2nd bit by 2
-	Monster *fakeMonster = (Monster*)pOne; 
+	MovableObject* boss = new Monster(); // With MoveableObject there is usually 1 less bit used compared to Monster/Player
+	MovableObject* pOne = new Player();  // Both increment the 2nd bit by 2
+	Monster* fakeMonster = (Monster*)pOne;
 
 	// add code here
-	cout << &boss <<endl;
-	cout << &pOne << endl;
-	cout << &fakeMonster << endl;
+	cout << " Boss address is " << &boss << endl;
+	cout << " pOne address is " << &pOne << endl;
+	cout << " fakeMonster address is " << &fakeMonster << endl;
 
 	boss->xPos = 32;
 	boss->yPos = 11;
