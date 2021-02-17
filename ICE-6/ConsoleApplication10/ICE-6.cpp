@@ -49,9 +49,9 @@ int main()
 	Monster *fakeMonster = (Monster*)pOne; 
 
 	// add code here
-	cout << &boss <<endl;
-	cout << &pOne << endl;
-	cout << &fakeMonster << endl; 
+	cout <<" Boss address is "<< &boss <<endl;
+	cout << " pOne address is " << &pOne << endl;
+	cout << " fakeMonster address is " << &fakeMonster << endl;
 
 	boss->xPos = 32;
 	boss->yPos = 11;
