@@ -16,9 +16,9 @@ const float BOUNDS = .2;
 void update()
 {
 	world.Step((1.0 / 60.0), 6, 2);
-	if (snakeBody->GetPosition().x > targetBody->GetPosition().x - BOUNDS && snakeBody->GetPosition().x < targetBody->GetPosition().x + BOUNDS)
+	if (snakeBody->GetPosition().x > targetBody->GetPosition().x - BOUNDS-2 && snakeBody->GetPosition().x < targetBody->GetPosition().x + BOUNDS +2)
 	{
-		if (snakeBody->GetPosition().y > targetBody->GetPosition().y - BOUNDS && snakeBody->GetPosition().y < targetBody->GetPosition().y + BOUNDS)
+		if (snakeBody->GetPosition().y > targetBody->GetPosition().y - BOUNDS -2&& snakeBody->GetPosition().y < targetBody->GetPosition().y + BOUNDS+2)
 		{
 			moveTarget(target.position.x, target.position.y);
 			targetsHit++;
@@ -29,7 +29,7 @@ void update()
 //displays position of target/player
 void display()
 {
-	cout << "Player is at X:" << snakeBody->GetPosition().x << " Y: " << snakeBody->GetPosition().y << "  |  ";
+	cout << "Player is at X:" << snakeBody->GetPosition().x << " Y: " << snakeBody->GetPosition().y-1 << "  |  ";
 	cout << "Target is at X:" << targetBody-> GetPosition().x << " Y: " << targetBody->GetPosition().y << endl;
 }
 
@@ -40,11 +40,11 @@ void applyForces()
 {
 	if (key == 119)
 	{
-		snakeBody->ApplyForceToCenter(b2Vec2(0,200.0f),false);
+		snakeBody->ApplyForceToCenter(b2Vec2(0,20000.0f),false);
 	}
 	if (key == 97)
 	{
-		snakeBody->ApplyForceToCenter(b2Vec2(-200.0f, 0.0f), false);
+		snakeBody->ApplyForceToCenter(b2Vec2(-2000.0f, 0.0f), false);
 	}
 	if (key == 115)
 	{
@@ -52,7 +52,7 @@ void applyForces()
 	}
 	if (key == 100)
 	{
-		snakeBody->ApplyForceToCenter(b2Vec2(200.0f, 0.0f), false);
+		snakeBody->ApplyForceToCenter(b2Vec2(2000.0f, 0.0f), false);
 	}
 	
 }
@@ -61,15 +61,17 @@ void applyForces()
 //x/y range within +/- 5.0
 void moveTarget(float& xpos, float& ypos)
 {
+	cout << "Target hit!" << endl;
 	world.DestroyBody(targetBody);
 	targetBody = nullptr;
+	xpos = (rand() / (RAND_MAX / 10.0f)) - 5.0f;
+	ypos = (rand() / (RAND_MAX / 10.0f)); // Can't have targets underneath floor!
+	target.position.Set(xpos, ypos);
+	targetBody = world.CreateBody(&target);
+	b2PolygonShape targetShape;
+	targetShape.SetAsBox(1.0f, 1.0f);
+	targetBody->CreateFixture(&targetShape, 0.0f);
 
-	target.position.Set(0, 3.0);
-	xpos = 0;
-	ypos = 3.0;
-
-	//xpos = rand() / RAND_MAX * 10.0f - 5.0f;
-	//ypos = rand() / RAND_MAX * 10.0f - 5.0f;
 }
 
 
@@ -98,7 +100,7 @@ int main()
 
 	// Creates dynamic body (snake)
 	playerSnake.type = b2_dynamicBody;
-	playerSnake.position.Set(0.0f, 10);
+	playerSnake.position.Set(0.0f, 100);
 	snakeBody = world.CreateBody(&playerSnake);
 	b2PolygonShape dynamicBox;
 	dynamicBox.SetAsBox(1.0f, 1.0f);
@@ -110,8 +112,8 @@ int main()
 
 	// Creates target (static)
 	target.type = b2_staticBody;
-	//target.position.Set((rand() / (RAND_MAX/10.0f))-5.0f, (rand() / (RAND_MAX / 10.0f)) - 5.0f);
-	target.position.Set(0.0f, 5.0f);
+	target.position.Set((rand() / (RAND_MAX/10.0f))-5.0f, (rand() / (RAND_MAX / 10.0f)));
+	//target.position.Set(0, 50);
 	targetBody = world.CreateBody(&target);
 	b2PolygonShape targetShape;
 	targetShape.SetAsBox(1.0f, 1.0f);
