@@ -13,10 +13,25 @@ extern int key;
 extern b2Body* snakeBody;
 extern b2Body* targetBody;
 
+
+void processInput();
+
+void ApplyForceUp(b2Body& player);
+void ApplyForceDown(b2Body& player);
+void ApplyForceRight(b2Body& player);
+void ApplyForceLeft(b2Body& player);
+
+void StopMoving(b2Body& player);
+
+void ReverseGravity(b2World& world);
+
+void SetupTargets(int cnt);
+
+bool SelectNextTarget();
+
 void update();
 
 void display();
-
 
 void applyForces();
 
