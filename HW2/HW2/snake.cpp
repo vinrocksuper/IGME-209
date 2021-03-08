@@ -12,44 +12,67 @@ b2Body* targetBody;
 const float BOUNDS = .2;
 b2Vec2 TargetLocations[];
 b2Vec2* currentLocation;
-//typedef
+
+
+typedef void (*inputFunction)(b2Body*);
 
 // Milestone 2 Methods below
 
 //sets function pointer and then at end of func calls those pointer functions
 void processInput()
 {
-	
+	inputFunction inFun = nullptr;
+
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		inFun = ApplyForceUp;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		inFun = ApplyForceLeft;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		inFun = ApplyForceDown;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		inFun = ApplyForceRight;
+	}
+	inFun(snakeBody);
 }
 
 
 //Applies force to player in cardinal directions using WASD
-void ApplyForceUp(b2Body& player)
+void ApplyForceUp(b2Body* player)
 {
-	
+	player->ApplyForceToCenter(b2Vec2(2000.0f, 0.0f), false);
 }
-void ApplyForceDown(b2Body& player)
+void ApplyForceDown(b2Body* player)
 {
+	player->ApplyForceToCenter(b2Vec2(-1000.0f, 0.0f), false);
+}
 
-}
-void ApplyForceLeft(b2Body& player)
+void ApplyForceLeft(b2Body* player)
 {
-
+	player->ApplyForceToCenter(b2Vec2(-2000.0f, 0.0f), false);
 }
-void ApplyForceRight(b2Body& player)
+
+void ApplyForceRight(b2Body* player)
 {
-
+	player->ApplyForceToCenter(b2Vec2(2000.0f, 0.0f), false);
 }
+
 
 //Calls SetVelocity to stop all movement on player
-void StopMoving(b2Body& player)
+void StopMoving(b2Body* player)
 {
-	
+	player->SetLinearVelocity(b2Vec2(0,0));
 }
 // calls b2World SetGravity to reverse the gravity
 void ReverseGravity(b2World& world)
 {
-	
+	world.SetGravity(-gravity);
 }
 
 //prompts user for number of targets to use from 1 - 10. (Make sure to check if valid)

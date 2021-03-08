@@ -1,9 +1,6 @@
 // HW2.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-#define SFML_STATIC
 
-#include <SFML\Window.hpp>
-#include <SFML\Graphics.hpp>
 #include <iostream>
 #include "snake.h";
 

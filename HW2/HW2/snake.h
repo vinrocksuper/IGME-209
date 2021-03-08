@@ -1,4 +1,8 @@
 #pragma once
+#define SFML_STATIC
+
+#include <SFML\Window.hpp>
+#include <SFML\Graphics.hpp>
 #include <iostream>
 #include "Box2D.h";
 #include <conio.h>
@@ -16,12 +20,12 @@ extern b2Body* targetBody;
 
 void processInput();
 
-void ApplyForceUp(b2Body& player);
-void ApplyForceDown(b2Body& player);
-void ApplyForceRight(b2Body& player);
-void ApplyForceLeft(b2Body& player);
+void ApplyForceUp(b2Body* player);
+void ApplyForceDown(b2Body* player);
+void ApplyForceRight(b2Body* player);
+void ApplyForceLeft(b2Body* player);
 
-void StopMoving(b2Body& player);
+void StopMoving(b2Body* player);
 
 void ReverseGravity(b2World& world);
 
