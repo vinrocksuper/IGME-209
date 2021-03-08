@@ -5,13 +5,12 @@
 #include "snake.h";
 
 
-//introduce game
-//create physics world (box2d)
-//create snake (physics body b2body)
-//create while loop to keep running until user hits ESC or total # of targets
-//	inside while loop check if keypress (kbhit)
-//	if keypress then applyForces()
-//physcis world will auto update snake based on gravity/ other forces
+// int main <- this is in HW2.cpp not in snake.cpp
+// make it call setupTarget()
+// Add code from SFML to create window for display
+// Add while loop from Windows PE to control display
+// Draw snake pos using circle, target using square
+// SFML coords different from Box2D, so need conversion.
 //
 int main()
 {

@@ -10,6 +10,77 @@ int key;
 b2Body* snakeBody;
 b2Body* targetBody;
 const float BOUNDS = .2;
+b2Vec2 TargetLocations[];
+b2Vec2* currentLocation;
+//typedef
+
+// Milestone 2 Methods below
+
+//sets function pointer and then at end of func calls those pointer functions
+void processInput()
+{
+	
+}
+
+
+//Applies force to player in cardinal directions using WASD
+void ApplyForceUp(b2Body& player)
+{
+	
+}
+void ApplyForceDown(b2Body& player)
+{
+
+}
+void ApplyForceLeft(b2Body& player)
+{
+
+}
+void ApplyForceRight(b2Body& player)
+{
+
+}
+
+//Calls SetVelocity to stop all movement on player
+void StopMoving(b2Body& player)
+{
+	
+}
+// calls b2World SetGravity to reverse the gravity
+void ReverseGravity(b2World& world)
+{
+	
+}
+
+//prompts user for number of targets to use from 1 - 10. (Make sure to check if valid)
+// creates arr of b2vec2 positions for target to move to (see global var)
+// add one additional target at end of arr at pos (-1000,1000) to end the game
+// when target is moved to (-1000,1000) you are done
+void SetupTargets(int cnt)
+{
+	
+}
+
+// moves currentTarget pointer to next valid target.
+// returns true if there are more targets, false otherwise
+bool SelectNextTarget()
+{
+	return false;
+}
+
+//int main <- this is in HW2.cpp not in snake.cpp
+// make it call setupTarget()
+// Add code from SFML to create window for display
+// Add while loop from Windows PE to control display
+// Draw snake pos using circle, target using square
+// SFML coords different from Box2D, so need conversion.
+
+
+
+
+
+
+// Milestone 1 Methods Below
 
 // updates physics world
 // doesnt move snake, updates box2d
