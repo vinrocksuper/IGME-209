@@ -10,7 +10,7 @@ int key;
 b2Body* snakeBody;
 b2Body* targetBody;
 const float BOUNDS = .2;
-b2Vec2 TargetLocations[];
+b2Vec2* TargetLocations; // ptr array
 b2Vec2* currentLocation;
 
 
@@ -81,6 +81,20 @@ void ReverseGravity(b2World& world)
 // when target is moved to (-1000,1000) you are done
 void SetupTargets(int cnt)
 {
+	cout << "how many targets should I generate? (From 1-10)" << endl;
+	cin >> cnt;
+	while(cnt < 1 || cnt > 10)
+	{
+		cout << "that was an invalid number. Please enter an integer between 1 and 10" << endl;
+		cin >> cnt;
+	}
+
+	TargetLocations = new b2Vec2[cnt+1];
+		for (int i =0;i<cnt;i++)
+		{
+			TargetLocations[i] = b2Vec2((rand() / (RAND_MAX / 10.0f)) - 5.0f, (rand() / (RAND_MAX / 10.0f)));
+		}
+		TargetLocations[cnt] = b2Vec2(-1000, 1000);
 	
 }
 
