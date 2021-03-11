@@ -16,7 +16,7 @@ extern int targetsHit;
 extern int key;
 extern b2Body* snakeBody;
 extern b2Body* targetBody;
-
+extern int maxTargets;
 
 void processInput();
 

@@ -10,7 +10,11 @@ int key;
 b2Body* snakeBody;
 b2Body* targetBody;
 const float BOUNDS = .2;
+int maxTargets;
+
+
 b2Vec2* TargetLocations; // ptr array
+//b2Vec2 TargetLocationsArr[];
 b2Vec2* currentLocation;
 
 
@@ -52,12 +56,10 @@ void ApplyForceDown(b2Body* player)
 {
 	player->ApplyForceToCenter(b2Vec2(-1000.0f, 0.0f), false);
 }
-
 void ApplyForceLeft(b2Body* player)
 {
 	player->ApplyForceToCenter(b2Vec2(-2000.0f, 0.0f), false);
 }
-
 void ApplyForceRight(b2Body* player)
 {
 	player->ApplyForceToCenter(b2Vec2(2000.0f, 0.0f), false);
@@ -88,8 +90,10 @@ void SetupTargets(int cnt)
 		cout << "that was an invalid number. Please enter an integer between 1 and 10" << endl;
 		cin >> cnt;
 	}
-
+	maxTargets = cnt;
 	TargetLocations = new b2Vec2[cnt+1];
+	//TargetLocationsArr = new b2Vec2[cnt + 1];
+	
 		for (int i =0;i<cnt;i++)
 		{
 			TargetLocations[i] = b2Vec2((rand() / (RAND_MAX / 10.0f)) - 5.0f, (rand() / (RAND_MAX / 10.0f)));
@@ -102,7 +106,12 @@ void SetupTargets(int cnt)
 // returns true if there are more targets, false otherwise
 bool SelectNextTarget()
 {
-	return false;
+	currentLocation = &TargetLocations[++targetsHit];
+	if(currentLocation == nullptr)
+	{
+		return false;
+	}
+	return true;
 }
 
 //int main <- this is in HW2.cpp not in snake.cpp

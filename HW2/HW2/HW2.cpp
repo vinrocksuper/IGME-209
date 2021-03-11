@@ -50,18 +50,11 @@ int main()
 	targetShape.SetAsBox(1.0f, 1.0f);
 	targetBody->CreateFixture(&targetShape, 0.0f);
 
-	while (targetsHit < 2) {
-		// Exits while loop if Esc is hit
-		if (_kbhit()) {
-			key = _getch();
-			if (key == 27) {
-				break;
-			}
-			else
-			{
-				applyForces();
-			}
-		}
+	SetupTargets(0);
+
+	
+	while (targetsHit < maxTargets) {
+		processInput();
 		update();
 		display();
 	}
