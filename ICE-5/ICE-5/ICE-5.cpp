@@ -11,7 +11,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
     sf::CircleShape myCircle(40.f);
     sf::RectangleShape myRect(sf::Vector2f(100,125));
-    myRect.setOrigin(50, 63);
+    myRect.setOrigin(50, 163);
     myRect.setPosition(300.f, 200.f);
     sf::ConvexShape weirdShape;
     weirdShape.setPointCount(5);

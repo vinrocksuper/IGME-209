@@ -43,6 +43,11 @@ void processInput()
 	{
 		inFun = ApplyForceRight;
 	}
+
+	if(inFun == nullptr)
+	{
+		return;
+	}
 	inFun(snakeBody);
 }
 
@@ -50,19 +55,19 @@ void processInput()
 //Applies force to player in cardinal directions using WASD
 void ApplyForceUp(b2Body* player)
 {
-	player->ApplyForceToCenter(b2Vec2(2000.0f, 0.0f), false);
+	player->ApplyForceToCenter(b2Vec2(0, 100.0f), false);
 }
 void ApplyForceDown(b2Body* player)
 {
-	player->ApplyForceToCenter(b2Vec2(-1000.0f, 0.0f), false);
+	player->ApplyForceToCenter(b2Vec2(0, -50.0f), false);
 }
 void ApplyForceLeft(b2Body* player)
 {
-	player->ApplyForceToCenter(b2Vec2(-2000.0f, 0.0f), false);
+	player->ApplyForceToCenter(b2Vec2(-40.0f, 0.0f), false);
 }
 void ApplyForceRight(b2Body* player)
 {
-	player->ApplyForceToCenter(b2Vec2(2000.0f, 0.0f), false);
+	player->ApplyForceToCenter(b2Vec2(40.0f, 0.0f), false);
 }
 
 
@@ -141,6 +146,9 @@ void update()
 			targetsHit++;
 		}
 	}
+
+
+
 }
 
 //displays position of target/player

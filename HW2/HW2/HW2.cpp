@@ -50,12 +50,42 @@ int main()
 	targetShape.SetAsBox(1.0f, 1.0f);
 	targetBody->CreateFixture(&targetShape, 0.0f);
 
+
+
 	SetupTargets(0);
+	
+	sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+	sf::CircleShape snakeCircle(40.f);
+	sf::RectangleShape targetRect(sf::Vector2f(100, 125));
+
+	snakeCircle.setPosition(300, 0);
+	targetRect.setPosition(300, 500);
 
 	
-	while (targetsHit < maxTargets) {
+	while (window.isOpen()) {
 		processInput();
 		update();
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			// "close requested" event: we close the window
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+		snakeCircle.setPosition(snakeBody->GetPosition().x+300, 5.2*(-snakeBody->GetPosition().y+100));
+		
+		// clear the window with black color
+		window.clear(sf::Color::Black);
+
+		// draw everything here...
+		// window.draw(...);
+		window.draw(snakeCircle);
+		//window.draw(targetRect); UNCOMMENT THIS LINE
+		// end the current frame
+		window.display();
+		
+
+		
 		display();
 	}
 	return 0;
