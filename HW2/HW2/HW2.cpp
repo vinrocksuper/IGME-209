@@ -43,8 +43,8 @@ int main()
 
 	// Creates target (static)
 	target.type = b2_staticBody;
-	target.position.Set((rand() / (RAND_MAX/10.0f))-5.0f, (rand() / (RAND_MAX / 10.0f)));
-	//target.position.Set(0, 50);
+	//target.position.Set((rand() / (RAND_MAX/10.0f))-5.0f, (rand() / (RAND_MAX / 10.0f)));
+	target.position.Set(0, 50);
 	targetBody = world.CreateBody(&target);
 	b2PolygonShape targetShape;
 	targetShape.SetAsBox(1.0f, 1.0f);
@@ -60,9 +60,9 @@ int main()
 
 	snakeCircle.setPosition(300, 0);
 	targetRect.setPosition(300, 500);
-
+	isRunning = true;
 	
-	while (window.isOpen()) {
+	while (window.isOpen() && isRunning) {
 		processInput();
 		update();
 		sf::Event event;

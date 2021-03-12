@@ -17,6 +17,7 @@ b2Vec2* TargetLocations; // ptr array
 //b2Vec2 TargetLocationsArr[];
 b2Vec2* currentLocation;
 
+bool isRunning;
 
 typedef void (*inputFunction)(b2Body*);
 
@@ -97,13 +98,12 @@ void SetupTargets(int cnt)
 	}
 	maxTargets = cnt;
 	TargetLocations = new b2Vec2[cnt+1];
-	//TargetLocationsArr = new b2Vec2[cnt + 1];
 	
 		for (int i =0;i<cnt;i++)
 		{
 			TargetLocations[i] = b2Vec2((rand() / (RAND_MAX / 10.0f)) - 5.0f, (rand() / (RAND_MAX / 10.0f)));
 		}
-		TargetLocations[cnt] = b2Vec2(-1000, 1000);
+		TargetLocations[cnt] = b2Vec2(-1000, -1000);
 	
 }
 
@@ -142,11 +142,17 @@ void update()
 	{
 		if (snakeBody->GetPosition().y > targetBody->GetPosition().y - BOUNDS -2&& snakeBody->GetPosition().y < targetBody->GetPosition().y + BOUNDS+2)
 		{
+			SelectNextTarget();
 			moveTarget(target.position.x, target.position.y);
 			targetsHit++;
 		}
 	}
 
+
+	if(targetBody->GetPosition().x == -1000)
+	{
+		isRunning = false;
+	}
 
 
 }
@@ -189,9 +195,10 @@ void moveTarget(float& xpos, float& ypos)
 	cout << "Target hit!" << endl;
 	world.DestroyBody(targetBody);
 	targetBody = nullptr;
-	xpos = (rand() / (RAND_MAX / 10.0f)) - 5.0f;
-	ypos = (rand() / (RAND_MAX / 10.0f)); // Can't have targets underneath floor!
-	target.position.Set(xpos, ypos);
+	
+	target.position.Set(currentLocation->x,currentLocation->y);
+
+	
 	targetBody = world.CreateBody(&target);
 	b2PolygonShape targetShape;
 	targetShape.SetAsBox(1.0f, 1.0f);

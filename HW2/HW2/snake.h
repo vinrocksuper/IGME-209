@@ -17,7 +17,7 @@ extern int key;
 extern b2Body* snakeBody;
 extern b2Body* targetBody;
 extern int maxTargets;
-
+extern bool isRunning;
 void processInput();
 
 void ApplyForceUp(b2Body* player);
