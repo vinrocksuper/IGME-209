@@ -53,13 +53,13 @@ int main()
 
 
 	SetupTargets(0);
-	
+	cout << TargetLocations->Length() << endl;
 	sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
 	sf::CircleShape snakeCircle(40.f);
-	sf::RectangleShape targetRect(sf::Vector2f(100, 125));
+	sf::RectangleShape targetRect(sf::Vector2f(25, 25));
 
-	snakeCircle.setPosition(300, 0);
-	targetRect.setPosition(300, 500);
+	snakeCircle.setPosition(400, 0);
+	targetRect.setPosition(400, 300);
 	isRunning = true;
 	
 	while (window.isOpen() && isRunning) {
@@ -72,15 +72,16 @@ int main()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-		snakeCircle.setPosition(snakeBody->GetPosition().x+300, 5.2*(-snakeBody->GetPosition().y+100));
-		
+		snakeCircle.setPosition(snakeBody->GetPosition().x+400, 5.2*(-snakeBody->GetPosition().y+100));
+		targetRect.setPosition(targetBody->GetPosition().x+400, 5.2*(-targetBody->GetPosition().y+100));
 		// clear the window with black color
 		window.clear(sf::Color::Black);
 
 		// draw everything here...
 		// window.draw(...);
+
+		window.draw(targetRect); //UNCOMMENT THIS LINE
 		window.draw(snakeCircle);
-		//window.draw(targetRect); UNCOMMENT THIS LINE
 		// end the current frame
 		window.display();
 		

@@ -18,6 +18,7 @@ extern b2Body* snakeBody;
 extern b2Body* targetBody;
 extern int maxTargets;
 extern bool isRunning;
+extern b2Vec2* TargetLocations; // ptr array
 void processInput();
 
 void ApplyForceUp(b2Body* player);

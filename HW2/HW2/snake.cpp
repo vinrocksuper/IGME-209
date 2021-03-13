@@ -101,10 +101,10 @@ void SetupTargets(int cnt)
 	
 		for (int i =0;i<cnt;i++)
 		{
-			TargetLocations[i] = b2Vec2((rand() / (RAND_MAX / 10.0f)) - 5.0f, (rand() / (RAND_MAX / 10.0f)));
+			TargetLocations[i] = b2Vec2((rand() / (RAND_MAX / 800.0f)) - 400.0f, (rand() / (RAND_MAX / 100.0f)));
 		}
 		TargetLocations[cnt] = b2Vec2(-1000, -1000);
-	
+
 }
 
 // moves currentTarget pointer to next valid target.
@@ -138,9 +138,9 @@ bool SelectNextTarget()
 void update()
 {
 	world.Step((1.0 / 60.0), 6, 2);
-	if (snakeBody->GetPosition().x > targetBody->GetPosition().x - BOUNDS-2 && snakeBody->GetPosition().x < targetBody->GetPosition().x + BOUNDS +2)
+	if (snakeBody->GetPosition().x > targetBody->GetPosition().x - BOUNDS-20 && snakeBody->GetPosition().x < targetBody->GetPosition().x + BOUNDS +20)
 	{
-		if (snakeBody->GetPosition().y > targetBody->GetPosition().y - BOUNDS -2&& snakeBody->GetPosition().y < targetBody->GetPosition().y + BOUNDS+2)
+		if (snakeBody->GetPosition().y > targetBody->GetPosition().y - BOUNDS -20&& snakeBody->GetPosition().y < targetBody->GetPosition().y + BOUNDS+20)
 		{
 			SelectNextTarget();
 			moveTarget(target.position.x, target.position.y);
@@ -149,7 +149,7 @@ void update()
 	}
 
 
-	if(targetBody->GetPosition().x == -1000)
+	if(targetBody->GetPosition().x == -1000 || targetsHit >= TargetLocations->Length())
 	{
 		isRunning = false;
 	}
@@ -192,13 +192,16 @@ void applyForces()
 //x/y range within +/- 5.0
 void moveTarget(float& xpos, float& ypos)
 {
+	
 	cout << "Target hit!" << endl;
+	cout << targetsHit << endl;
 	world.DestroyBody(targetBody);
 	targetBody = nullptr;
-	
+
+	//target.position.Set(0, ypos - 10); testing purposes only
+
 	target.position.Set(currentLocation->x,currentLocation->y);
 
-	
 	targetBody = world.CreateBody(&target);
 	b2PolygonShape targetShape;
 	targetShape.SetAsBox(1.0f, 1.0f);
