@@ -45,6 +45,15 @@ void processInput()
 		inFun = ApplyForceRight;
 	}
 
+	if(sf::Keyboard::isKeyPressed((sf::Keyboard::Space)))
+	{
+		ReverseGravity(world);
+	}
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		StopMoving(snakeBody);
+	}
+	
 	if(inFun == nullptr)
 	{
 		return;
@@ -72,15 +81,18 @@ void ApplyForceRight(b2Body* player)
 }
 
 
-//Calls SetVelocity to stop all movement on player
+// Calls SetVelocity to stop all movement (barring gravity) on player
+// Escape to stop movement
 void StopMoving(b2Body* player)
 {
 	player->SetLinearVelocity(b2Vec2(0,0));
 }
+
 // calls b2World SetGravity to reverse the gravity
+// Spacebar to reverse gravity
 void ReverseGravity(b2World& world)
 {
-	world.SetGravity(-gravity);
+	world.SetGravity(-world.GetGravity());
 }
 
 //prompts user for number of targets to use from 1 - 10. (Make sure to check if valid)
@@ -194,7 +206,7 @@ void moveTarget(float& xpos, float& ypos)
 {
 	
 	cout << "Target hit!" << endl;
-	cout << targetsHit << endl;
+	cout << targetsHit << endl;	
 	world.DestroyBody(targetBody);
 	targetBody = nullptr;
 
