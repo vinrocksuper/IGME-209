@@ -8,6 +8,7 @@ using namespace std;
 
 int main()
 {
+	srand(time(NULL));
 	cout << "Welcome one and all to the HW4 Battle Royale! 10 Players, enter, 1 Player leaves! (well really 0, but you get the jist)" << endl;
 	Player* battlers[10];
 	char* names[] = { (char*)"Bob", (char*)"Tim",(char*)"Tom",(char*)"John" ,(char*)"Dave" ,(char*)"Alice" ,(char*)"Amy" ,(char*)"Chloe" ,(char*)"Sue" ,(char*)"Mary" };
