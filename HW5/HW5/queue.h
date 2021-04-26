@@ -9,16 +9,19 @@ class queue
 private:
 	int size;
 	T** list;
+	
 
 public:
 	queue();
-	queue(T first);
 	queue(T** copy);
+	queue(const queue &copy);
 	~queue();
-	void Push();
+	void Push(T* item);
 	void Pop();
 	void Print();
 	int GetSize();
-	bool IsEmpty();
+	bool IsEmpty() const;
+
+	queue&queue:: operator= (const queue);
 };
 
