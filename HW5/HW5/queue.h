@@ -13,7 +13,6 @@ private:
 
 public:
 	queue();
-	queue(T** copy);
 	queue(const queue &copy);
 	~queue();
 	void Push(T* item);
@@ -22,6 +21,6 @@ public:
 	int GetSize();
 	bool IsEmpty() const;
 
-	queue&queue:: operator= (const queue);
+	queue& operator = (const queue other);
 };
 

@@ -2,10 +2,33 @@
 //
 
 #include <iostream>
-
+#include "queue.h";
 int main()
 {
-    std::cout << "Hello World!\n";
+	queue<int> intQ;
+
+	int x = 0;
+	int y = 1;
+	int z = 2;
+	
+	int* xptr = &x;
+	int* yptr = &y;
+	int* zptr = &z;
+
+	
+	intQ.Push(xptr);
+	intQ.Push(yptr);
+	intQ.Push(zptr);
+
+	intQ.Print();
+	cout << "There are " << intQ.GetSize() << " elements in the queue" << endl;
+
+	
+	intQ.Pop();
+
+	intQ.Print();
+	
+    
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
