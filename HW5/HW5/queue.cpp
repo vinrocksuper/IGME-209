@@ -1,5 +1,5 @@
 #include "queue.h"
-
+/**
 /// <summary>
 /// Constructor 1 space for queue
 /// </summary>
@@ -144,3 +144,5 @@ queue<T>& queue<T>::operator=(const queue other)
 	}
 	return this;
 }
+
+**/
